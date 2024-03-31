@@ -23,3 +23,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::get('/index/record', [RecordController::class, 'index']);
 Route::get('/show/record/{id}', [RecordController::class, 'record']);
 Route::delete('/index/record/{id}', [RecordController::class, 'deleteRecord']);
+Route::put('/update/record/{id}', [RecordController::class, 'updateRecord']);

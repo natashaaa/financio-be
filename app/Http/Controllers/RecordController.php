@@ -3,9 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Record;
-use App\Http\Requests\StoreRecordRequest;
-use App\Http\Requests\UpdateRecordRequest;
-
+use Illuminate\Http\Request;
 use Response;
 
 class RecordController extends Controller
@@ -34,6 +32,28 @@ class RecordController extends Controller
 
     }
 
+    public function updateRecord(Request $request, $id){
+
+        $updateRecord = Record::find($id);
+
+        if (request()->has('name')) {
+            $updateRecord->name = request('name');
+        }
+     
+        if (request()->has('age')) {
+            $updateRecord->age = request('age');
+        }
+
+        if (request()->has('gender')) {
+            $updateRecord->gender = request('gender');
+        }
+     
+        $updateRecord->save();
+
+        return Response::json($updateRecord);
+
+    }
+
     public function deleteRecord($id){
 
         try {
@@ -42,7 +62,7 @@ class RecordController extends Controller
 
             $deleteRecord = Record::where('id', $id)->delete();
             return response()->json($deleteRecord);
-            
+
         } catch (\Exception $e) {
             return response()->json(['error' => $e->getMessage()], 500);
         }
