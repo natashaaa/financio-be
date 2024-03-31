@@ -18,6 +18,7 @@ class CreateRecordsTable extends Migration
             $table->string('name');
             $table->integer('age');
             $table->string('gender');
+            $table->boolean('is_delete');
             $table->timestamps();
         });
     }
