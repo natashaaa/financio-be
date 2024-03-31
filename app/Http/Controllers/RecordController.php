@@ -17,7 +17,7 @@ class RecordController extends Controller
      */
     public function index()
     {
-        $records = Record::select('name', 'age', 'gender')->get();
+        $records = Record::select('name', 'age', 'gender')->where('is_delete', 0)->get();
 
         return Response::json($records);
     }
@@ -34,5 +34,19 @@ class RecordController extends Controller
 
     }
 
+    public function deleteRecord($id){
+
+        try {
+
+            // $deleteRecord = Record::where('id', $id)->update(['is_delete' => 1,]);
+
+            $deleteRecord = Record::where('id', $id)->delete();
+            return response()->json($deleteRecord);
+            
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 500);
+        }
+
+    }
 
 }
