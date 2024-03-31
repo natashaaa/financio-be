@@ -21,3 +21,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::get('/index/record', [RecordController::class, 'index']);
+Route::get('/record/{id}', [RecordController::class, 'record']);

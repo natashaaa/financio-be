@@ -22,69 +22,17 @@ class RecordController extends Controller
         return Response::json($records);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+    public function record(string $id){
+
+        $getrecord = Record::select('id', 'name', 'age', 'gender')->find($id);
+
+        //return 404 if item not exist
+        if(empty($getrecord)){
+            return Response::json($getrecord, 404);
+        }
+        return Response::json($getrecord);
+
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \App\Http\Requests\StoreRecordRequest  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(StoreRecordRequest $request)
-    {
-        //
-    }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Record  $record
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Record $record)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Record  $record
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Record $record)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \App\Http\Requests\UpdateRecordRequest  $request
-     * @param  \App\Models\Record  $record
-     * @return \Illuminate\Http\Response
-     */
-    public function update(UpdateRecordRequest $request, Record $record)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Record  $record
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Record $record)
-    {
-        //
-    }
 }
