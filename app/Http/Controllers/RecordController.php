@@ -15,7 +15,7 @@ class RecordController extends Controller
      */
     public function index()
     {
-        $records = Record::select('name', 'age', 'gender')->where('is_delete', 0)->get();
+        $records = Record::select('id','name', 'age', 'gender')->where('is_delete', 0)->get();
 
         return Response::json($records);
     }
